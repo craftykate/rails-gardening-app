@@ -1,0 +1,29 @@
+//*============ CALLOUT ============*/
+	#callout {
+	  padding: 70px;
+	  min-width: 600px;
+	  background: $main;
+		background-image: url(../img/cherryblossom.png); //fallback
+	  background-image: url(../img/cherryblossom.png), -webkit-linear-gradient(top, $main, lighten($main, 10%), $main);
+	  background-image: url(../img/cherryblossom.png), -o-linear-gradient(bottom, $main, lighten($main, 10%), $main);
+	  background-image: url(../img/cherryblossom.png), -moz-linear-gradient(bottom, $main, lighten($main, 10%), $main);
+	  background-image: url(../img/cherryblossom.png), linear-gradient(to bottom, $main, lighten($main, 10%), $main);
+		background-repeat:no-repeat;
+		// "right -200px bottom" positions image
+		// "0 0" puts gradient back where it belongs
+		background-position: right -250px bottom, 0 0;
+	  color: white;
+	  text-align: center;
+	  text-shadow: 0px 0px 4px darken($main, 15%);
+	  @include boxshadow;
+	  h2 {
+	  	margin-bottom: 30px;
+	  	font-size: 400%;
+	  	font-weight: 700;
+	  }
+	  p {
+	  	font-size: 200%;
+	  	text-align: center;
+	  }
+	}
+//*============ END CALLOUT ============*/
