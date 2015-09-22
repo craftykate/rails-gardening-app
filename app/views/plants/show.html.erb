@@ -1,0 +1,26 @@
+<% provide(:title, @plant.name) %>
+<%= link_to "← Back to all plants", plants_path %>
+<h2><%= @plant.name %></h2>
+<p>
+	<strong>Climbing?</strong> <%= @plant.climb %><br/>
+
+	<strong>Plants per square foot:</strong> <%= @plant.persqft %><br/>
+
+	<strong>Sun/shade conditions:</strong> <%= @plant.sun %><br/>
+
+	<% if @plant.first_planting != nil %>
+		<strong><%= @first_title %>:</strong> <%= @months[@plant.first_planting - 1] %> - <%= @months[@plant.first_planting_duration - 1] %><br/>
+	<% end %>
+
+	<% if @plant.first_planting_maturity != nil %>
+		<strong>Weeks to harvest:</strong> <%= @plant.first_planting_maturity/7 %><br/>
+	<% end %>
+
+	<% if @plant.second_planting != nil %>
+		<strong>Second Planting Dates:</strong> <%= @months[@plant.second_planting - 1] %> - <%= @months[@plant.second_planting_duration - 1] %><br/>
+		<strong>Weeks to second harvest:</strong> <%= @plant.second_planting_maturity/7 %>
+	<% end %>
+
+	<strong>Notes:</strong> <%= @plant.notes %>
+</p>
+<p>(<%= link_to "edit", edit_plant_path(@plant) %> | <%= link_to "delete", plant_path(@plant), method: :delete,data: {confirm: "Are you sure?"} %>)</p>

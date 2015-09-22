@@ -1,0 +1,4 @@
+<% provide(:title, "Edit #{@plant.name}") %>
+
+<%= link_to "← Back to #{@plant.name}", plant_path(@plant) %>
+<%= render 'plant_form', :form_title => "Edit Plant" %>

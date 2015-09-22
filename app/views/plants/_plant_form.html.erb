@@ -1,0 +1,53 @@
+<%= form_for @plant do |f| %>
+
+  <h2><%= form_title %> <span>Name required</span></h2>
+
+  <fieldset>
+
+    <% if @plant.errors.any? %>
+      <ul class = "errors">
+        <% @plant.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.label :name, 'Name:' %>
+    <%= f.text_field :name %>
+
+    <%= f.label :climb, 'Climbing?' %>
+    <%= f.select :climb, [['No', false], ['Yes', true]] %>
+
+    <%= f.label :persqft, 'How many plants per square foot?' %>
+    <%= f.select :persqft, options_for_select(@sqft_options, @plant.persqft)%>
+
+    <%= f.label :sun, 'Sun/shade conditions:' %>
+    <%= f.text_field :sun %>
+
+    <%= f.label :first_planting, 'First planting first month' %>
+    <%= f.select :first_planting, options_for_select(@month_options, @plant.first_planting), :include_blank => true %>
+
+    <%= f.label :first_planting_duration, 'First planting last month' %>
+    <%= f.select :first_planting_duration, options_for_select(@month_options, @plant.first_planting_duration), :include_blank => true %>
+
+    <%= f.label :first_planting_maturity, 'First planting days to harvest' %>
+    <%= f.number_field :first_planting_maturity %>
+
+    <%= f.label :second_planting, 'Second planting first month' %>
+    <%= f.select :second_planting, options_for_select(@month_options, @plant.second_planting), :include_blank => true %>
+
+    <%= f.label :second_planting_duration, 'Second planting last month' %>
+    <%= f.select :second_planting_duration, options_for_select(@month_options, @plant.second_planting_duration), :include_blank => true %>
+
+    <%= f.label :second_planting_maturity, 'Second planting days to harvest' %>
+    <%= f.number_field :second_planting_maturity %>
+
+    <%= f.label :notes, 'General Plant Notes' %>
+    <%= f.text_area :notes %>
+
+    <div class="submit">
+      <%= f.submit 'Save' %>
+    </div>
+
+  </fieldset>
+<% end %>

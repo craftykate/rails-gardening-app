@@ -1,0 +1,9 @@
+<% provide(:title, 'All Plants') %>
+
+<h2>All Plants</h2>
+
+<ul>
+	<% @plants.each do |p| %>
+		<li><%= link_to p.name, plant_path(p) %></li>
+	<% end %>
+</ul>
