@@ -2,6 +2,7 @@ class PlantsController < ApplicationController
 
   def index
     @plants = Plant.all.order('name ASC')
+    @plants = @plants.sort_by{ |p| p.plant_generic_name.name }
   end
 
   def show
@@ -94,7 +95,7 @@ class PlantsController < ApplicationController
   private
 
     def plant_params
-      params.require(:plant).permit(:name, :plant_generic_name_id, :climb, :persqft, :sun, :first_planting, :first_planting_duration, :first_planting_maturity, :second_planting, :second_planting_duration, :second_planting_maturity, :notes)
+      params.require(:plant).permit(:name, :plant_generic_name_id, :climb, :persqft, :sun, :first_planting, :first_planting_duration, :first_planting_maturity, :second_planting, :second_planting_duration, :second_planting_maturity, :notes, plant_generic_name_attributes: [:id, :name])
     end
 # end private
 end

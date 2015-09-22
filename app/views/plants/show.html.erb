@@ -2,6 +2,10 @@
 <%= link_to "← Back to all plants", plants_path %>
 <h2><%= @plant.name %></h2>
 <p>
+	<% if @plant.plant_generic_name != nil %>
+		<strong>Type:</strong> <%= @plant.plant_generic_name.name %><br/>
+	<% end %>
+
 	<strong>Climbing?</strong> <%= @plant.climb %><br/>
 
 	<strong>Plants per square foot:</strong> <%= @plant.persqft %><br/>

@@ -4,6 +4,6 @@
 
 <ul>
 	<% @plants.each do |p| %>
-		<li><%= link_to p.name, plant_path(p) %></li>
+		<li><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %></li>
 	<% end %>
 </ul>

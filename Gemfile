@@ -11,6 +11,8 @@ gem 'faker', '1.4.2'
 gem 'carrierwave', '0.10.0'
 gem 'mini_magick', '3.8.0'
 gem 'fog', '1.23.0'
+# For nested forms
+gem 'cocoon'
 # Paginate results
 gem 'will_paginate', '3.0.7'
 # Use SCSS for stylesheets
