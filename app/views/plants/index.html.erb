@@ -116,17 +116,18 @@
 						<tr>
 							<% 
 							if p.first_planting_maturity != nil
-								maturity = (p.first_planting_maturity/7).to_s
+								maturity = "Maturity: "
+								maturity += (p.first_planting_maturity/7).to_s
 								if p.second_planting_maturity != nil && p.second_planting_maturity != "" && p.second_planting_maturity != p.first_planting_maturity
-									maturity.concat "/"
+									maturity += "/"
 									maturity += (p.second_planting_maturity/7).to_s
-									maturity.concat "(spr/fall)"
+									maturity += "(spr/fall)"
 								end
-								maturity.concat " wks"
+								maturity += " wks"
 							end
 							%>
 
-							<td class="notbold">Maturity: <%= maturity %></td>
+							<td class="notbold"><%= maturity %></td>
 							<td>Pick</td>
 							<td class = "<%= "pick" if picking.include? 1 %>"></td>
 							<td class = "<%= 'pick' if picking.include? 2 %>"></td>

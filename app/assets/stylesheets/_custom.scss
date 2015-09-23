@@ -89,6 +89,27 @@
 			margin-bottom: 10px;
 			font-size: 150%;
 		}
+
+		ul.index-options {
+			width: 100%;
+			text-align: center;
+			li {
+				a {
+					display: inline-block;
+					margin-bottom: 10px;
+					background-color: $accent;
+					padding: 40px;
+					color: white;
+					font-size: 120%;
+					text-decoration: none;
+					@include round(20px);
+					&:hover {
+						background-color: lighten($accent, 30%);
+						color: $text;
+					}
+				}
+			}
+		}
 	}
 //*============END CONTENT============*/
 
