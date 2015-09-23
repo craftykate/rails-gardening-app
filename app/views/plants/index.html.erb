@@ -46,19 +46,25 @@
 							if first_plant_start < first_plant_end
 								while count <= first_plant_end
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 							else
 								while count <= 12
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 								count = 1
 								while count <= first_plant_end
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 							end
@@ -75,19 +81,25 @@
 							if second_plant_start < second_plant_end
 								while count <= second_plant_end
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 							else
 								while count <= 12
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 								count = 1
 								while count <= second_plant_end
 									planting << count
-									picking << count + duration
+									pick_date = count + duration
+									pick_date = pick_date - 12 if pick_date > 12
+									picking << pick_date
 									count += 1
 								end
 							end
