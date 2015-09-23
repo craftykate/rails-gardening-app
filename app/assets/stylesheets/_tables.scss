@@ -39,17 +39,8 @@
 				background-color: lighten($main, 30%);
 			}
 			td {
-				&.plant {
-					background-color: #D4A190;
-				}
-				&.pick {
-					background-color: #A1D490;
-				}
 				&:first-child {
 					font-weight: bold;
-				}
-				&.notbold {
-					font-weight: normal;
 				}
 			}
 			tr:last-child {
@@ -69,6 +60,34 @@
 				&:first-child {
 					border: none;
 				}
+			}
+		}
+	}
+
+	table.plant-calendar {
+		th.month {
+			width: 45px;
+		}
+		td {
+			&.plant {
+				background-color: #D4A190;
+			}
+			&.plant-title {
+				color: #D4A190;
+			}
+			&.pick {
+				background-color: #A1D490;
+			}
+			&.pick-title {
+				color: #A1D490;
+			}
+			&.notbold {
+				font-weight: normal;
+			}
+			&.maturity {
+				padding-left: 30px;
+				font-size: 80%;
+				font-weight: lighter;
 			}
 		}
 	}

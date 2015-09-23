@@ -15,23 +15,23 @@
 
 <h2>Plant Calendar</h2>
 
-<table>
+<table class="plant-calendar">
 				<thead>
 					<tr>
 						<th scope="col">Plant</th>
 						<th></th>
-						<th scope="col">Jan</th>
-						<th scope="col">Feb</th>
-						<th scope="col">Mar</th>
-						<th scope="col">Apr</th>
-						<th scope="col">May</th>
-						<th scope="col">Jun</th>
-						<th scope="col">Jul</th>
-						<th scope="col">Aug</th>
-						<th scope="col">Sep</th>
-						<th scope="col">Oct</th>
-						<th scope="col">Nov</th>
-						<th scope="col">Dec</th>
+						<th class="month" scope="col">Jan</th>
+						<th class="month" scope="col">Feb</th>
+						<th class="month" scope="col">Mar</th>
+						<th class="month" scope="col">Apr</th>
+						<th class="month" scope="col">May</th>
+						<th class="month" scope="col">Jun</th>
+						<th class="month" scope="col">Jul</th>
+						<th class="month" scope="col">Aug</th>
+						<th class="month" scope="col">Sep</th>
+						<th class="month" scope="col">Oct</th>
+						<th class="month" scope="col">Nov</th>
+						<th class="month" scope="col">Dec</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -99,7 +99,7 @@
 						%>
 						<tr>
 							<td><%= p.name %></td>
-							<td>Plant</td>
+							<td class="plant-title">Plant</td>
 							<td class = "<%= "plant" if planting.include? 1 %>"></td>
 							<td class = "<%= 'plant' if planting.include? 2 %>"></td>
 							<td class = "<%= 'plant' if planting.include? 3 %>"></td>
@@ -127,8 +127,8 @@
 							end
 							%>
 
-							<td class="notbold"><%= maturity %></td>
-							<td>Pick</td>
+							<td class="notbold maturity"><%= maturity %></td>
+							<td class="pick-title">Pick</td>
 							<td class = "<%= "pick" if picking.include? 1 %>"></td>
 							<td class = "<%= 'pick' if picking.include? 2 %>"></td>
 							<td class = "<%= 'pick' if picking.include? 3 %>"></td>
