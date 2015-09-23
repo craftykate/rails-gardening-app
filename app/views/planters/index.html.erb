@@ -1,0 +1,12 @@
+<% provide(:title, 'All Planters') %>
+
+<h2>All Planters</h2>
+
+<ul class='planter-list'>
+	<% @planters.each do |p| %>
+		<li><%= link_to p.name, planter_path(p) %></li>
+	<% end %>
+</ul>
+
+<br/>
+<%= link_to "Add Planter Box", new_planter_path %>

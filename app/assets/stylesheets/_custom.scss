@@ -127,6 +127,25 @@
 				}
 			}
 		}
+		$size: 12*9 + px;
+		div.planter-box {
+			div.row {
+				clear: both;
+				div.square {
+					float: left;
+					width: $size;
+					height: $size;
+					border: 2px solid black;
+					text-align: center;
+					line-height: $size;
+					span {
+						display: inline-block;
+						vertical-align: middle;
+						line-height: normal;
+					}
+				}
+			}
+		}
 	}
 //*============END CONTENT============*/
 

@@ -1,0 +1,22 @@
+<% provide(:title, @planter.name) %>
+<%= link_to "← Back to all planters", planters_path %>
+<h2><%= @planter.name %></h2>
+
+<div class="planter-box">
+	<% length = @planter.length %>
+	<% width = @planter.width %>
+	<% i = 1 %>
+	<% w = 0 %>
+	<% while w < width %>
+		<% l = 0 %>
+		<div class="row">
+		<% while l < length %>
+			<div class="square"><span><%= i %></span></div>
+			<% l += 1 %>
+			<% i += 1 %>
+		<% end %>
+		</div>
+		<% w += 1 %>
+	<% end %>
+</div>
+

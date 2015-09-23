@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :plants
   resources :plant_generic_names
   resources :plant_categories
+  resources :planters
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

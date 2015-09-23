@@ -1,0 +1,29 @@
+<%= form_for @planter do |f| %>
+
+  <h2><%= form_title %> <span>Asterisks are required</span></h2>
+
+  <fieldset>
+
+    <% if @planter.errors.any? %>
+      <ul class = "errors">
+        <% @planter.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.label :name, '*Name:' %>
+    <%= f.text_field :name %>
+
+    <%= f.label :length, '*How many boxes left to right is the planter?' %>
+    <%= f.number_field :length %>
+
+    <%= f.label :width, '*How many boxes front to back is the planter?' %>
+    <%= f.number_field :width %>
+
+    <div class="submit">
+      <%= f.submit 'Save' %>
+    </div>
+
+  </fieldset>
+<% end %>
