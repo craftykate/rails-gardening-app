@@ -38,6 +38,12 @@
 					<% @plants.each do |p|
 						planting = []
 						picking = []
+						def planting_method(count, planting, duration, picking)
+							planting << count
+							pick_date = count + duration
+							pick_date = pick_date - 12 if pick_date > 12
+							picking << pick_date if duration != 0
+						end
 						if p.first_planting != nil
 							first_plant_start = p.first_planting
 							first_plant_end = p.first_planting_duration
@@ -49,26 +55,17 @@
 							count = first_plant_start
 							if first_plant_start < first_plant_end
 								while count <= first_plant_end
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 							else
 								while count <= 12
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 								count = 1
 								while count <= first_plant_end
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 							end
@@ -84,26 +81,17 @@
 							count = second_plant_start
 							if second_plant_start < second_plant_end
 								while count <= second_plant_end
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 							else
 								while count <= 12
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 								count = 1
 								while count <= second_plant_end
-									planting << count
-									pick_date = count + duration
-									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date if duration != 0
+									planting_method(count, planting, duration, picking)
 									count += 1
 								end
 							end
