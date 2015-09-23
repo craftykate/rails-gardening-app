@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922185105) do
+ActiveRecord::Schema.define(version: 20150922195720) do
+
+  create_table "plant_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "plant_generic_names", force: true do |t|
     t.string   "name"
@@ -34,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150922185105) do
     t.text     "sun"
     t.text     "notes"
     t.integer  "plant_generic_name_id"
+    t.integer  "plant_category_id"
   end
 
 end

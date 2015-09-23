@@ -3,7 +3,140 @@
 <h2>All Plants</h2>
 
 <ul>
+	<% @current_category = "" %>
 	<% @plants.each do |p| %>
+		<% if @current_category != p.plant_category.name %>
+			<li><strong><%= p.plant_category.name %></strong></li>
+		<% end %>
 		<li><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %></li>
+		<% @current_category = p.plant_category.name %>
 	<% end %>
 </ul>
+
+<h2>Plant Calendar</h2>
+
+<table>
+				<thead>
+					<tr>
+						<th scope="col">Plant</th>
+						<th></th>
+						<th scope="col">Jan</th>
+						<th scope="col">Feb</th>
+						<th scope="col">Mar</th>
+						<th scope="col">Apr</th>
+						<th scope="col">May</th>
+						<th scope="col">Jun</th>
+						<th scope="col">Jul</th>
+						<th scope="col">Aug</th>
+						<th scope="col">Sep</th>
+						<th scope="col">Oct</th>
+						<th scope="col">Nov</th>
+						<th scope="col">Dec</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @plants.each do |p|
+						planting = []
+						picking = []
+						if p.first_planting != nil
+							first_plant_start = p.first_planting
+							first_plant_end = p.first_planting_duration
+							duration = p.first_planting_maturity/7/4
+							count = first_plant_start
+							if first_plant_start < first_plant_end
+								while count <= first_plant_end
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+							else
+								while count <= 12
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+								count = 1
+								while count <= first_plant_end
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+							end
+						end
+						if p.second_planting != nil
+							second_plant_start = p.second_planting
+							second_plant_end = p.second_planting_duration
+							if p.second_planting_maturity != nil || p.second_planting_maturity != ""
+								duration = p.first_planting_maturity/7/4
+							else 
+								duration = p.second_planting_maturity/7/4
+							end
+							count = second_plant_start
+							if second_plant_start < second_plant_end
+								while count <= second_plant_end
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+							else
+								while count <= 12
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+								count = 1
+								while count <= second_plant_end
+									planting << count
+									picking << count + duration
+									count += 1
+								end
+							end
+						end
+						%>
+						<tr>
+							<td><%= p.name %></td>
+							<td>Plant</td>
+							<td class = "<%= "plant" if planting.include? 1 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 2 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 3 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 4 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 5 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 6 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 7 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 8 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 9 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 10 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 11 %>"></td>
+							<td class = "<%= 'plant' if planting.include? 12 %>"></td>
+						</tr>
+						<tr>
+							<% 
+							if p.first_planting_maturity != nil
+								maturity = (p.first_planting_maturity/7).to_s
+								if p.second_planting_maturity != nil && p.second_planting_maturity != "" && p.second_planting_maturity != p.first_planting_maturity
+									maturity.concat "/"
+									maturity += (p.second_planting_maturity/7).to_s
+									maturity.concat "(spr/fall)"
+								end
+								maturity.concat " wks"
+							end
+							%>
+
+							<td class="notbold">Maturity: <%= maturity %></td>
+							<td>Pick</td>
+							<td class = "<%= "pick" if picking.include? 1 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 2 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 3 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 4 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 5 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 6 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 7 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 8 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 9 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 10 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 11 %>"></td>
+							<td class = "<%= 'pick' if picking.include? 12 %>"></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>

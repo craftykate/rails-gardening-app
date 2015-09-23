@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'static_pages#index'
   resources :plants
   resources :plant_generic_names
+  resources :plant_categories
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

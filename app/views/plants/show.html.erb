@@ -2,19 +2,23 @@
 <%= link_to "← Back to all plants", plants_path %>
 <h2><%= @plant.name %></h2>
 <p>
-	<% if @plant.plant_generic_name != nil %>
-		<strong>Type:</strong> <%= @plant.plant_generic_name.name %><br/>
-	<% end %>
+	<strong>Type:</strong> <%= @plant.plant_generic_name.name %><br/>
 
-	<strong>Climbing?</strong> <%= @plant.climb %><br/>
+	<strong>Category:</strong> <%= @plant.plant_category.name %><br/>
 
-	<strong>Plants per square foot:</strong> <%= @plant.persqft %><br/>
+	<strong>Climbing?</strong> 
+	<% @plant.climb == true ? climbing = "Yes" : climbing = "No" %>
+	<%= climbing %><br/>
+
+	<% @plant.persqft == 17 ? square_feet = "1 per 2 sq feet" : square_feet = @plant.persqft %>
+	<strong>Plants per square foot:</strong> <%= square_feet %><br/>
 
 	<strong>Sun/shade conditions:</strong> <%= @plant.sun %><br/>
 
+	<strong><%= @first_title %>:</strong>
 	<% if @plant.first_planting != nil %>
-		<strong><%= @first_title %>:</strong> <%= @months[@plant.first_planting - 1] %> - <%= @months[@plant.first_planting_duration - 1] %><br/>
-	<% end %>
+		 <%= @months[@plant.first_planting - 1] %> - <%= @months[@plant.first_planting_duration - 1] %>
+	<% end %><br/>
 
 	<% if @plant.first_planting_maturity != nil %>
 		<strong>Weeks to harvest:</strong> <%= @plant.first_planting_maturity/7 %><br/>
@@ -22,7 +26,7 @@
 
 	<% if @plant.second_planting != nil %>
 		<strong>Second Planting Dates:</strong> <%= @months[@plant.second_planting - 1] %> - <%= @months[@plant.second_planting_duration - 1] %><br/>
-		<strong>Weeks to second harvest:</strong> <%= @plant.second_planting_maturity/7 %>
+		<strong>Weeks to second harvest:</strong> <%= @plant.second_planting_maturity/7 if @plant.second_planting_maturity != nil && @plant.second_planting_maturity != "" %><br/>
 	<% end %>
 
 	<strong>Notes:</strong> <%= @plant.notes %>

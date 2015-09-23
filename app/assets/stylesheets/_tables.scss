@@ -3,6 +3,7 @@
 		margin: 20px 0;
 		border-collapse: separate;
 		border-spacing: 0;
+		width: 100%;
 		th, td {
 			padding: 10px 15px;
 			vertical-align: middle;
@@ -37,28 +38,28 @@
 			tr:nth-child(even) {
 				background-color: lighten($main, 30%);
 			}
-			td:first-child {
-				font-weight: bold;
-			}
-			td:last-child {
-				text-align: right;
+			td {
+				&.plant {
+					background-color: #D4A190;
+				}
+				&.pick {
+					background-color: #A1D490;
+				}
+				&:first-child {
+					font-weight: bold;
+				}
+				&.notbold {
+					font-weight: normal;
+				}
 			}
 			tr:last-child {
 				td {
 					&:first-child {
 						border-bottom-left-radius: 5px;
-						text-align: right;
 					}
 					&:last-child {
 						border-bottom-right-radius: 5px;
 					}
-				}
-			}
-			// Take this out if you don't want a "footer" row at the end of the body
-			tr:last-child {
-				background-color: lighten(gray, 35%);
-				td {
-					border-top: 2px solid $main;
 				}
 			}
 		}
