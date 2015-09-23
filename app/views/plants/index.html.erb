@@ -41,14 +41,18 @@
 						if p.first_planting != nil
 							first_plant_start = p.first_planting
 							first_plant_end = p.first_planting_duration
-							duration = p.first_planting_maturity/7/4
+							if p.first_planting_maturity != nil && p.first_planting_maturity != ""
+								duration = p.first_planting_maturity/7/4
+							else
+								duration = 0
+							end
 							count = first_plant_start
 							if first_plant_start < first_plant_end
 								while count <= first_plant_end
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 							else
@@ -56,7 +60,7 @@
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 								count = 1
@@ -64,7 +68,7 @@
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 							end
@@ -83,7 +87,7 @@
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 							else
@@ -91,7 +95,7 @@
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 								count = 1
@@ -99,7 +103,7 @@
 									planting << count
 									pick_date = count + duration
 									pick_date = pick_date - 12 if pick_date > 12
-									picking << pick_date
+									picking << pick_date if duration != 0
 									count += 1
 								end
 							end
