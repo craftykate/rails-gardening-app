@@ -110,6 +110,17 @@
 				}
 			}
 		}
+		ul.plant-list {
+			li {
+				line-height: 120%;
+				&.category {
+					font-weight: bold;
+				}
+				&.name {
+					padding-left: 15px;
+				}
+			}
+		}
 	}
 //*============END CONTENT============*/
 

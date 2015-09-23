@@ -2,13 +2,13 @@
 
 <h2>All Plants</h2>
 
-<ul>
+<ul class='plant-list'>
 	<% @current_category = "" %>
 	<% @plants.each do |p| %>
 		<% if @current_category != p.plant_category.name %>
-			<li><strong><%= p.plant_category.name %></strong></li>
+			<li class = "category"><%= p.plant_category.name %></li>
 		<% end %>
-		<li><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %></li>
+		<li class = "name"><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %></li>
 		<% @current_category = p.plant_category.name %>
 	<% end %>
 </ul>
