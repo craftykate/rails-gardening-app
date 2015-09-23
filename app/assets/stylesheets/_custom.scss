@@ -111,6 +111,12 @@
 			}
 		}
 		ul.plant-list {
+	    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+	    -moz-column-count: 3; /* Firefox */
+	    column-count: 3;
+	    -webkit-column-rule: 1px solid $main; /* Chrome, Safari, Opera */
+	    -moz-column-rule: 1px solid $main; /* Firefox */
+	    column-rule: 1px solid $main;
 			li {
 				line-height: 120%;
 				&.category {
