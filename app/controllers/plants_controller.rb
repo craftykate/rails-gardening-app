@@ -58,7 +58,6 @@ class PlantsController < ApplicationController
     redirect_to plants_path
   end
 
-
   def plant_form_terms
     # Square foot drop down options
     @sqft_options = []

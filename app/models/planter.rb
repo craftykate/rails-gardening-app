@@ -1,4 +1,5 @@
 class Planter < ActiveRecord::Base
+	has_many :squares, dependent: :destroy
 
 	validates :name, :presence => true
 	validates :length, :presence => true

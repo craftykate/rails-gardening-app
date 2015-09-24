@@ -1,0 +1,28 @@
+<%= form_for @square do |f| %>
+
+  <h2><%= form_title %> <span>in <%= @planter.name %></span></h2>
+
+  <fieldset>
+
+    <% if @square.errors.any? %>
+      <ul class = "errors">
+        <% @square.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.label :unit, '*Pick a square:' %>
+    <%= f.select :unit, options_for_select(@unit_options, @square.unit) %>
+
+    <%= f.label :plant_id, '*Pick a plant:' %>
+    <%= f.select(:plant_id, Plant.all.order('plants.name ASC').map{|p| [ p.name, p.id ] }) %>
+
+    <%= hidden_field_tag :planter_id, @planter.id %>
+
+    <div class="submit">
+      <%= f.submit 'Save' %>
+    </div>
+
+  </fieldset>
+<% end %>

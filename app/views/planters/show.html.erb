@@ -11,7 +11,12 @@
 		<% l = 0 %>
 		<div class="row">
 		<% while l < length %>
-			<div class="square"><span><%= i %></span></div>
+			<% if @planter.squares.where(unit: i).exists? %>
+				<% name = " - #{@planter.squares.where(unit: i).first.plant.name}" %>
+			<% else %>
+				<% name = "" %>
+			<% end %>
+			<div class="square"><span><%= i %><%= name %></span></div>
 			<% l += 1 %>
 			<% i += 1 %>
 		<% end %>
@@ -19,4 +24,7 @@
 		<% w += 1 %>
 	<% end %>
 </div>
+<br style="clear: both"/>
+<br/>
 
+<%= link_to "Plant Something", new_square_path(:planter => @planter.id) %>
