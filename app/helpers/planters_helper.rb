@@ -6,8 +6,8 @@ module PlantersHelper
 		when 2
 			"<div class = 'seeds four seed-01'></div>
 			<div class = 'seeds four none'></div>
-			<div class = 'seeds four seed-02'></div>
-			<div class = 'seeds four none'></div>"
+			<div class = 'seeds four none'></div>
+			<div class = 'seeds four seed-02'></div>"
 		when 4
 			"<div class = 'seeds four seed-01'></div>
 			<div class = 'seeds four seed-02'></div>
