@@ -60,13 +60,7 @@ class PlantsController < ApplicationController
 
   def plant_form_terms
     # Square foot drop down options
-    @sqft_options = []
-    num = 1
-    while num <= 16 do
-      @sqft_options << [num, num]
-      num += 1
-    end
-    @sqft_options << ['1 per 2 sq feet', 17]
+    @sqft_options = [[1,1],[2,2],[4,4],[8,8],[9,9],[16,16],['1 per 2 sq feet', 17]]
 
     # Month drop down options
     @month_options = []
