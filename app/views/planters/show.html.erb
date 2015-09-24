@@ -42,7 +42,8 @@
   				<% end %>
   			<% else %>
   				<% num_seeds = @planter.squares.where(unit: i).first.plant.persqft %>
-  				<div class="square"><%= raw display_seeds(num_seeds) %></div>
+  				<% square = @planter.squares.where(unit: i).first.id %>
+  				<div class="square"><%= raw display_seeds(num_seeds, square, @planter.id) %></div>
   			<% end %>
 				<% l += 1 %>
 				<% i += 1 %>

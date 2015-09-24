@@ -1,0 +1,25 @@
+<%= form_for @seed do |f| %>
+
+  <h2><%= form_title %> <span>in <%= @planter.name %></span></h2>
+
+  <fieldset>
+
+    <% if @seed.errors.any? %>
+      <ul class = "errors">
+        <% @seed.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= f.label :date, '*Pick a date:' %>
+
+    <%= hidden_field_tag :planter_id, @planter.id %>
+    <%= hidden_field_tag :square_space, @seed.square_space %>
+
+    <div class="submit">
+      <%= f.submit 'Save' %>
+    </div>
+
+  </fieldset>
+<% end %>

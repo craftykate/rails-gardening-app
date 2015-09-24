@@ -9,6 +9,9 @@ class SeedsController < ApplicationController
 
   def new
     @seed = Seed.new
+    @square = Square.find(params[:square])
+    @seed.square_space = params[:unit]
+    @planter = Planter.find(params[:planter])
   end
 
   def create
