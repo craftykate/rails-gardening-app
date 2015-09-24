@@ -16,9 +16,7 @@
 			<% while l < length %>
 				<% square = @planter.squares.where(unit: i) %>
 				<% if square.exists? %>
-					<% initial_name = square.first.plant.plant_generic_name.name %>
-					<% initial_name = initial_name.pluralize if square.first.plant.persqft > 1 && square.first.plant.persqft != 17 %>
-					<% name = ". #{initial_name}" %>
+					<% name = ". #{square.first.plant.plant_generic_name.name}" %>
 				<% else %>
 					<% name = "" %>
 				<% end %>
