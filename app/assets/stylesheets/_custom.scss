@@ -144,6 +144,22 @@
 						line-height: normal;
 					}
 				}
+				a div.square {
+					border: 2px solid black;
+				}
+				$height: 30px;
+				div.square-name {
+					float: left;
+					width: $size;
+					height: $height;
+					text-align: center;
+					line-height: $height;
+					span {
+						display: inline-block;
+						vertical-align: middle;
+						line-height: normal;
+					}
+				}
 			}
 		}
 	}

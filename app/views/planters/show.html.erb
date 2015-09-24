@@ -11,22 +11,39 @@
 	<% while w < width %>
 		<% l = 0 %>
 		<div class="row">
-		<% while l < length %>
-			<% if @planter.squares.where(unit: i).exists? %>
-				<% name = ". #{@planter.squares.where(unit: i).first.plant.plant_generic_name.name}" %>
-			<% else %>
-				<% name = "" %>
+			<% while l < length %>
+				<% square = @planter.squares.where(unit: i) %>
+				<% if square.exists? %>
+					<% initial_name = square.first.plant.plant_generic_name.name %>
+					<% initial_name = initial_name.pluralize if square.first.plant.persqft > 1 && square.first.plant.persqft != 17 %>
+					<% name = ". #{initial_name}" %>
+				<% else %>
+					<% name = "" %>
+				<% end %>
+				<div class="square-name"><span>
+				<% if name != "" %>
+					<%= i %><%= name %>
+				<% end %>
+				</span></div>
+				<% i += 1 %>
+				<% l += 1 %>
 			<% end %>
-			<div class="square"><span>
-			<% if name != "" %>
-				<%= i %><%= name %>
-			<% else %>
-				<%= link_to i, new_square_path({:planter => @planter.id, :unit => i}) %>
+			<% i -= length %>
+			<% l -= length %>
+		</div>
+		<div class="row">
+			<% while l < length %>
+				<% link =  @planter.squares.where(unit: i).exists? %>
+				<% if !link %>
+					<%= link_to(new_square_path({:planter => @planter.id, :unit => i})) do %>
+  					<div class="square"><%= i %></div>
+  				<% end %>
+  			<% else %>
+  				<div class="square"></div>
+  			<% end %>
+				<% l += 1 %>
+				<% i += 1 %>
 			<% end %>
-			</span></div>
-			<% l += 1 %>
-			<% i += 1 %>
-		<% end %>
 		</div>
 		<% w += 1 %>
 	<% end %>
