@@ -11,6 +11,7 @@ class SquaresController < ApplicationController
   def new
     @square = Square.new
     @planter = Planter.find(params[:planter])
+    @square.unit = params[:unit]
     unit_options
   end
 
