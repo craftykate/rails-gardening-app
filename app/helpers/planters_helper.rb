@@ -1,55 +1,57 @@
 module PlantersHelper
-	def display_seeds(i)
-		case i
+	def display_seeds(num_seeds)
+		output = ""
+		seed_num = 1
+		seed_space = 1
+		case num_seeds
 		when 1, 17
-			"<div class = 'seeds one seed-01'></div>"
+			output += "<div class = 'seeds one seed-1'></div>"
+			return output
 		when 2
-			"<div class = 'seeds four seed-01'></div>
-			<div class = 'seeds four none'></div>
-			<div class = 'seeds four none'></div>
-			<div class = 'seeds four seed-02'></div>"
+			4.times do
+				if seed_space == 1 || seed_space == 4
+					div_class = "seed-#{seed_num}"
+					seed_num += 1
+				else
+					div_class = "none"
+				end
+				output += "<div class = 'seeds four #{div_class}'></div>"
+				seed_space += 1
+			end
+			return output
 		when 4
-			"<div class = 'seeds four seed-01'></div>
-			<div class = 'seeds four seed-02'></div>
-			<div class = 'seeds four seed-03'></div>
-			<div class = 'seeds four seed-04'></div>"
+			4.times do 
+				div_class = "seed-#{seed_num}"
+				output += "<div class = 'seeds four #{div_class}'></div>"
+				seed_num += 1
+			end
+			return output
 		when 8
-			"<div class = 'seeds nine seed-01'></div>
-			<div class = 'seeds nine seed-02'></div>
-			<div class = 'seeds nine seed-03'></div>
-			<div class = 'seeds nine seed-04'></div>
-			<div class = 'seeds nine none'></div>
-			<div class = 'seeds nine seed-05'></div>
-			<div class = 'seeds nine seed-06'></div>
-			<div class = 'seeds nine seed-07'></div>
-			<div class = 'seeds nine seed-08'></div>"
+			9.times do
+				if seed_space == 5
+					div_class = "none"
+				else
+					div_class = "seed-#{seed_num}"
+					seed_num += 1
+				end
+				output += "<div class = 'seeds nine #{div_class}'></div>"
+				seed_space += 1
+			end
+			return output
 		when 9
-			"<div class = 'seeds nine seed-01'></div>
-			<div class = 'seeds nine seed-02'></div>
-			<div class = 'seeds nine seed-03'></div>
-			<div class = 'seeds nine seed-04'></div>
-			<div class = 'seeds nine seed-05'></div>
-			<div class = 'seeds nine seed-06'></div>
-			<div class = 'seeds nine seed-07'></div>
-			<div class = 'seeds nine seed-08'></div>
-			<div class = 'seeds nine seed-09'></div>"
+			9.times do
+				div_class = "seed-#{seed_num}"
+				output += "<div class = 'seeds nine #{div_class}'></div>"
+				seed_num += 1
+			end
+			return output
 		when 16
-			"<div class = 'seeds sixteen seed-01'></div>
-			<div class = 'seeds sixteen seed-02'></div>
-			<div class = 'seeds sixteen seed-03'></div>
-			<div class = 'seeds sixteen seed-04'></div>
-			<div class = 'seeds sixteen seed-05'></div>
-			<div class = 'seeds sixteen seed-06'></div>
-			<div class = 'seeds sixteen seed-07'></div>
-			<div class = 'seeds sixteen seed-08'></div>
-			<div class = 'seeds sixteen seed-09'></div>
-			<div class = 'seeds sixteen seed-10'></div>
-			<div class = 'seeds sixteen seed-11'></div>
-			<div class = 'seeds sixteen seed-12'></div>
-			<div class = 'seeds sixteen seed-13'></div>
-			<div class = 'seeds sixteen seed-14'></div>
-			<div class = 'seeds sixteen seed-15'></div>
-			<div class = 'seeds sixteen seed-16'></div>"
+			16.times do
+				div_class = "seed-#{seed_num}"
+				output += "<div class = 'seeds sixteen #{div_class}'></div>"
+				seed_num += 1
+			end
+			return output
 		end
 	end
 end

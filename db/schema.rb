@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924174956) do
+ActiveRecord::Schema.define(version: 20150924213401) do
 
   create_table "plant_categories", force: true do |t|
     t.string   "name"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150924174956) do
     t.text     "notes"
     t.integer  "plant_generic_name_id"
     t.integer  "plant_category_id"
+  end
+
+  create_table "seeds", force: true do |t|
+    t.integer  "square_id"
+    t.integer  "square_space"
+    t.date     "plant_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "squares", force: true do |t|
