@@ -26,9 +26,10 @@ class SeedsController < ApplicationController
     @seed = Seed.new(seed_params)
     @seed.square_id = params[:square_id]
     @seed.square_space = params[:square_space]
+    @square = Square.find(params[:square_id])
     if @seed.save
       @planter = Planter.find(params[:planter_id])
-      flash[:success] = "Success!"
+      flash[:success] = "#{@seed.square.plant.name} chosen for Square #{@square.unit} on #{@seed.plant_date.strftime("%b %d '%y")}"
       redirect_to planter_path(@planter)
     else
       render :new
@@ -37,13 +38,28 @@ class SeedsController < ApplicationController
 
   def edit
     @seed = Seed.find(params[:id])
+    @planter = Planter.find(params[:planter_id])
+    @square = Square.find(params[:square_id])
+    @square_space = params[:square_space]
+    @plant = @square.plant
+    @months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    @first_title = ""
+    if @plant.second_planting == nil
+      @first_title = "Planting Dates"
+    else 
+      @first_title = "First Planting Dates"
+    end
   end
 
   def update
+    @seed = Seed.find(params[:id])
+    @seed.square_id = params[:square_id]
+    @seed.square_space = params[:square_space]
+    @planter = Planter.find(params[:planter_id])
+    @square = Square.find(params[:square_id])
     if @seed.update_attributes(seed_params)
-      flash[:success] = "Updated"
-    session[:return_to] ||= request.referer
-    redirect_to session.delete(:return_to)
+      flash[:success] = "#{@seed.square.plant.name} update for Square #{@square.unit} to #{@seed.plant_date.strftime("%b %d '%y")}"
+      redirect_to planter_path(@planter)
     else
       render :edit
     end

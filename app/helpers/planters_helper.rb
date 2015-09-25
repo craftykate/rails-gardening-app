@@ -67,14 +67,15 @@ module PlantersHelper
 
 	def generate_link_text(seed_num, square_id, planter_id)
 		if @square.seeds.where(square_space: seed_num).exists?
-			link_text = @square.seeds.where(square_space: seed_num).first.plant_date.strftime("%b %d '%y")
+			date_text = @square.seeds.where(square_space: seed_num).first.plant_date.strftime("%b %d '%y")
+			link_text = "#{link_to(date_text, edit_seed_path(@square.seeds.where(square_space: seed_num).first, {:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}))}"
 		else
-			link_text = "#{link_to(seed_num, new_seed_path({:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}))}"
+			link_text = "#{link_to("", new_seed_path({:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}))}"
 		end
 		return link_text
 	end
 
 	def generate_div(num_seeds, div_class, link_text)
-		return "<div class = 'seeds #{num_seeds} #{div_class}'><span>#{link_text}</span></div>"
+		return "<div class = 'seeds #{num_seeds} #{div_class}'>#{link_text}</div>"
 	end
 end
