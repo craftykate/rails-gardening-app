@@ -127,6 +127,14 @@
 				}
 			}
 		}
+		p.instructions {
+	    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+	    -moz-column-count: 2; /* Firefox */
+	    column-count: 2;
+	    -webkit-column-rule: 1px solid $main; /* Chrome, Safari, Opera */
+	    -moz-column-rule: 1px solid $main; /* Firefox */
+	    column-rule: 1px solid $main;
+		}
 		$size: 12*10;
 		div.planter-box {
 			div.row {
@@ -162,6 +170,13 @@
 						display: inline-block;
 						vertical-align: middle;
 						line-height: normal;
+						a {
+							text-decoration: none;
+							color: $main;
+							&:hover {
+								color: $accent;
+							}
+						}
 					}
 				}
 				div.seeds {
@@ -232,7 +247,8 @@
 						&.not-planted {
 							background-color: lighten($main, 30%);
 							&:hover {
-								color: darken($main, 20%);
+								color: white;
+								background-color: $main;
 							}
 						}
 					}

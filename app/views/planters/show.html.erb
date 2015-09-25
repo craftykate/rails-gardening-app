@@ -2,8 +2,6 @@
 <%= link_to "← Back to all planters", planters_path %>
 <h2><%= @planter.name %></h2>
 
-<p>Click a number to choose a plant for a square.<br/>
-Click an empty square to schedule a planting.</p>
 <div class="planter-box">
 	<% length = @planter.length %>
 	<% width = @planter.width %>
@@ -23,7 +21,7 @@ Click an empty square to schedule a planting.</p>
 				<% end %>
 				<div class="square-name"><span>
 				<% if name != "" %>
-					<%= i %><%= name %>
+					<%= link_to("#{i} #{name}", @planter.squares.where(unit: i).first, method: :delete, data: { confirm: "Delete plant in square?" }) %>
 				<% end %>
 				</span></div>
 				<% i += 1 %>
@@ -55,5 +53,13 @@ Click an empty square to schedule a planting.</p>
 </div>
 <br style="clear: both"/>
 <br/>
+
+
+<h2>Instructions</h2>
+<p class="instructions">Click a number to choose a plant for a square.<br/>
+Or click a plant to emoty the square.<br/>
+Click an empty square to schedule a planting.<br/>
+Or click a date to plant, pick or modify a planting.<br/>
+Light green is a scheduled planting, dark green is a planted seed.</p>
 
 
