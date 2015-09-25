@@ -254,6 +254,29 @@
 					}
 				}
 			}
+			&.small {
+				$size: 12*6;
+				div.row {
+					div.square {
+						width: $size +px;
+						height: $size +px;
+						line-height: $size +px;
+						font-size: 80%;
+					}
+				}
+			}
+		}
+		ul.planter-list {
+			li {
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+		hr.main {
+			border: 0;
+			height: 1px;
+			background: $main;
 		}
 	}
 //*============END CONTENT============*/

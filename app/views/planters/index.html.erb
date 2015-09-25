@@ -4,7 +4,35 @@
 
 <ul class='planter-list'>
 	<% @planters.each do |p| %>
-		<li><%= link_to p.name, planter_path(p) %></li>
+		<li><h3><%= link_to p.name, planter_path(p) %></h3></li>
+		<div class="planter-box small">
+			<% length = p.length %>
+			<% width = p.width %>
+			<% i = 1 %>
+			<% w = 0 %>
+			<% while w < width %>
+				<% l = 0 %>
+				<div class="row">
+					<% while l < length %>
+						<% square = p.squares.where(unit: i) %>
+						<% if square.exists? %>
+							<% name = "#{square.first.plant.plant_generic_name.name}" %>
+						<% else %>
+							<% name = "" %>
+						<% end %>
+						<div class="square"><%= name %></div>
+						<% i += 1 %>
+						<% l += 1 %>
+					<% end %>
+				</div>
+				<% w += 1 %>
+			<% end %>
+		</div>
+
+		
+		<li><br style="clear: both" /></li>
+		<li><br style="clear: both" /></li>
+		<li><hr class="main" /></li>
 	<% end %>
 </ul>
 
