@@ -91,4 +91,17 @@
 			}
 		}
 	}
+	table.planter-calendar {
+		th, td {
+			padding: 3px;
+		}
+		th {
+			font-size: 50%;
+			font-weight: normal;
+			padding: 10px 3px;
+		}
+		td.planted {
+			background-color: $accent;
+		}
+	}
 //*============ END TABLES ============*/

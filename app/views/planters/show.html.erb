@@ -54,7 +54,56 @@
 <br style="clear: both"/>
 <br/>
 
-<h2>Calendar</h2>
+<h2>6 Month Calendar</h2>
+<table class="planter-calendar">
+	<thead>
+		<tr>
+			<th scope="col">Box</th>
+			<% t = Time.now %>
+			<% 27.times do %>
+				<th scope="col"><%= t.strftime("%b %d") %></th>
+				<% t_week_later = t += 7.days %>
+				<% t = t_week_later %>
+			<% end %>
+		</tr>
+	</thead>
+	<tbody>
+		<% num_squares = @planter.length * @planter.width %>
+		<% num_squares.times do |box| %>
+			<tr>
+				<td><%= box + 1 %></td>
+				<% @square = @planter.squares.where(unit: (box + 1)) %>
+				<% if @square.exists? %>
+					<% @seeds = Seed.where(square_id: @square.first.id) %>
+					<% if @seeds.exists? %>
+						<% @seeds = @seeds.sort_by { |s| [ s.plant_date ] } %>
+						<% first_plant = @seeds[0].plant_date %>
+						<% last_plant = @seeds[-1].plant_date %>
+						<% maturity = @seeds.first.square.plant.first_planting_maturity %>
+						<% last_pick = last_plant + maturity.days %>
+						<% t = Time.now %>
+						<% 27.times do %>
+							<% if (t >= first_plant || (t + 6.days) >= first_plant) && t < last_pick %>
+								<td class="planted"></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<% t += 7.days %>
+						<% end %>
+					<% else %>
+						<% 27.times do %>
+							<td></td>
+						<% end %>
+					<% end %>
+				<% else %>
+					<% 27.times do %>
+						<td></td>
+					<% end %>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
 
 <h2>Instructions</h2>
 <p class="instructions"><strong>Step 1.</strong>Click a <span class="accent">pink number</span> in a square to choose a plant for a square.<br/>
