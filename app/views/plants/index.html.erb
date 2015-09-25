@@ -118,7 +118,7 @@
 						<tr>
 							<% 
 							if p.first_planting_maturity != nil
-								maturity = "Maturity: "
+								maturity = "; Maturity: "
 								maturity += (p.first_planting_maturity/7).to_s
 								if p.second_planting_maturity != nil && p.second_planting_maturity != "" && p.second_planting_maturity != p.first_planting_maturity
 									maturity += "/"
@@ -129,7 +129,7 @@
 							end
 							%>
 
-							<td class="notbold maturity"><%= maturity %></td>
+							<td class="notbold maturity"><%= p.plant_generic_name.name %><%= maturity %></td>
 							<td class="pick-title">Pick</td>
 							<td class = "<%= "pick" if picking.include? 1 %>"></td>
 							<td class = "<%= 'pick' if picking.include? 2 %>"></td>
