@@ -1,14 +1,16 @@
 <% provide(:title, 'All Plants') %>
 
 <h2>All Plants</h2>
-
+<p>◷ - How many seeds are scheduled<br/>
+	❀ - How many seeds are planted</p>
 <ul class='plant-list'>
 	<% @current_category = "" %>
 	<% @plants.each do |p| %>
 		<% if @current_category != p.plant_category.name %>
 			<li class = "category"><%= p.plant_category.name %></li>
 		<% end %>
-		<li class = "name"><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %></li>
+		<% how_many = how_many(p) %>
+		<li class = "name"><%= p.plant_generic_name.name %>: <%= link_to p.name, plant_path(p) %> <span class="tiny-plants"><%= how_many %></span> </li>
 		<% @current_category = p.plant_category.name %>
 	<% end %>
 </ul>
@@ -129,7 +131,11 @@
 							end
 							%>
 
-							<td class="notbold maturity"><%= p.plant_generic_name.name %><%= maturity %></td>
+							<% how_many = how_many(p) %>
+							<% if how_many != "" %>
+								<% how_many = "; #{how_many}" %>
+							<% end %>
+							<td class="notbold maturity"><%= p.plant_generic_name.name %><%= how_many %><%= maturity %></td>
 							<td class="pick-title">Pick</td>
 							<td class = "<%= "pick" if picking.include? 1 %>"></td>
 							<td class = "<%= 'pick' if picking.include? 2 %>"></td>
