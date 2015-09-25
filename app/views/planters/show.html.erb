@@ -15,13 +15,13 @@
 			<% while l < length %>
 				<% square = @planter.squares.where(unit: i) %>
 				<% if square.exists? %>
-					<% name = ". #{square.first.plant.plant_generic_name.name}" %>
+					<% name = " #{square.first.plant.plant_generic_name.name}" %>
 				<% else %>
 					<% name = "" %>
 				<% end %>
 				<div class="square-name"><span>
 				<% if name != "" %>
-					<%= link_to(i, @planter.squares.where(unit: i).first, method: :delete, data: { confirm: "Delete plant in square?" }) %><%= link_to(name, plant_path(square.first.plant), :title => square.first.plant.name) %>
+					<%= link_to("#{i}.", @planter.squares.where(unit: i).first, method: :delete, data: { confirm: "Delete plant in square?" }) %><%= link_to(name, plant_path(square.first.plant), :title => square.first.plant.name) %>
 				<% end %>
 				</span></div>
 				<% i += 1 %>
@@ -106,11 +106,11 @@
 </table>
 
 <h2>Instructions</h2>
-<p class="instructions"><strong>Step 1.</strong>Click a <span class="accent">pink number</span> in a square to choose a plant for a square.<br/>
+<p class="instructions"><strong>Step 1.</strong> Click a <span class="accent">pink number</span> in a square to choose a plant for that square.<br/>
 Click a <span class="main">plant's green number</span> to empty the square.<br/>
 Click a <span class="main">plant's green name</span> to see info on that plant.<br/>
-Hover over a <span class="main">plant's green name</span> to see it's full name.<br/>
-<strong>Step 2.</strong>Click an empty seed space to schedule a planting.<br/>
+Hover over a <span class="main">plant's green name</span> to see its full name.<br/>
+<strong>Step 2.</strong> Click an empty seed space to schedule a planting.<br/>
 <strong>Step 3.</strong> When planted, click a light green square to change status to "planted".<br/>
 Click a date to plant, pick or modify a planting.<br/>
 Light green is a scheduled planting, dark green is a planted seed.</p>

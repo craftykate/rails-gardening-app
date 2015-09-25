@@ -1,6 +1,8 @@
 <% provide(:title, 'Add Seed') %>
 <%= link_to "← Back to #{@planter.name}", planter_path(@planter) %>
 
+<%= render 'seed_form', :form_title => "Set Date" %>
+
 <h2><%= @plant.name %></h2>
 <p>
 	<strong>Type:</strong> <%= @plant.plant_generic_name.name %><br/>
@@ -33,5 +35,3 @@
 
 	<strong>Notes:</strong> <%= @plant.notes %>
 </p>
-
-<%= render 'seed_form', :form_title => "Set Date" %>
