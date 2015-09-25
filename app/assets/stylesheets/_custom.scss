@@ -174,22 +174,35 @@
  						width: 100%;
 						height: 100%;
 						line-height: $size + px;
+						a {
+							padding-top: $size/2 - 10 +px;
+						}
 					}
 					&.four {
 						width: 50%;
 						height: 50%;
 						line-height: $size/2 + px;
+						a {
+							padding-top: $size/4 - 15 +px
+						}
 					}
 					&.nine {
 						width: 33.334%;
 						height: 33.7%;
 						line-height: $size/3 + px;
+						font-size: 75%;
+						a {
+							padding-top: $size/9 - 8 +px;
+						}
 					}
 					&.sixteen {
 						width: 25%;
 						height: 25%;
 						line-height: $size/4 + px;
 						font-size: 50%;
+						a {
+							padding-top: 2px;
+						}
 					}
 					&.none {
 						background-color: lighten(gray, 30%);
@@ -219,7 +232,7 @@
 						&.not-planted {
 							background-color: lighten($main, 30%);
 							&:hover {
-								color: $main;
+								color: darken($main, 20%);
 							}
 						}
 					}
