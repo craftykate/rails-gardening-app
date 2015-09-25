@@ -63,7 +63,15 @@
 			}
 		}
 	}
-
+	table.schedule {
+		td.due {
+			color: $accent;
+		}
+		td.late {
+			background-color: $accent;
+			color: white;
+		}
+	}
 	table.plant-calendar {
 		th.month {
 			width: 45px;

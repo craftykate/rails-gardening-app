@@ -20,7 +20,14 @@
 							<td><%= s.square.plant.name %></td>
 							<td><%= s.square.plant.plant_category.name %></td>
 							<td><%= s.square.plant.plant_generic_name.name %></td>
-							<td><%= s.plant_date.strftime("%a, %b %d") %></td>
+							<% if s.plant_date.day ==  Time.now.day %>
+								<% plant_class = "due" %>
+							<% elsif s.plant_date.day < Time.now.day && s.plant_date.month == Time.now.month %>
+								<% plant_class = "late" %>
+							<% else %>
+								<% plant_class = "" %>
+							<% end %>
+							<td class="<%= plant_class %>"><%= s.plant_date.strftime("%a, %b %d") %></td>
 							<% message = "You are planting #{s.square.plant.name} in Square #{s.square.unit}, Space #{s.square_space}" %>
 							<td><%= link_to s.square.planter.name, message_planter_path(:id => s.square.planter, :message => message) %></td>
 							<td><%= s.square.unit %></td>
