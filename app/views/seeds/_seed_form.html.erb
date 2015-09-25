@@ -1,6 +1,6 @@
 <%= form_for @seed do |f| %>
 
-  <h2><%= form_title %> <span>in <%= @planter.name %></span></h2>
+  <h2><%= form_title %> <span>to Plant <%= @square.plant.name %> in <%= @planter.name %></span></h2>
 
   <fieldset>
 
@@ -12,10 +12,12 @@
       </ul>
     <% end %>
 
-    <%= f.label :date, '*Pick a date:' %>
+    <%= f.label :plant_date, '*Pick a date:' %>
+    <%= f.date_select(:plant_date) %>
 
     <%= hidden_field_tag :planter_id, @planter.id %>
-    <%= hidden_field_tag :square_space, @seed.square_space %>
+    <%= hidden_field_tag :square_id, @square.id %>
+    <%= hidden_field_tag :square_space, @square_space %>
 
     <div class="submit">
       <%= f.submit 'Save' %>

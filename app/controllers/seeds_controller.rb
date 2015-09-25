@@ -9,13 +9,23 @@ class SeedsController < ApplicationController
 
   def new
     @seed = Seed.new
-    @square = Square.find(params[:square])
-    @seed.square_space = params[:unit]
-    @planter = Planter.find(params[:planter])
+    @planter = Planter.find(params[:planter_id])
+    @square = Square.find(params[:square_id])
+    @square_space = params[:square_space]
+    @plant = @square.plant
+    @months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    @first_title = ""
+    if @plant.second_planting == nil
+      @first_title = "Planting Dates"
+    else 
+      @first_title = "First Planting Dates"
+    end
   end
 
   def create
     @seed = Seed.new(seed_params)
+    @seed.square_id = params[:square_id]
+    @seed.square_space = params[:square_space]
     if @seed.save
       @planter = Planter.find(params[:planter_id])
       flash[:success] = "Success!"
@@ -49,7 +59,7 @@ class SeedsController < ApplicationController
   private
 
     def seed_params
-      params.require(:seed).permit(:square_id, :square_space, :date)
+      params.require(:seed).permit(:square_id, :square_space, :plant_date)
     end
 # end private
 end

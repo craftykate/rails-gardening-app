@@ -3,30 +3,32 @@ module PlantersHelper
 		output = ""
 		seed_num = 1
 		seed_space = 1
+		@square = Square.find(square_id)
 		case num_seeds
 		when 1, 17
-			link_text = "#{link_to(seed_space, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
-			output += "<div class = 'seeds one seed-1'><span>#{link_text}</span></div>"
+			div_class = "seed-#{seed_num}"
+			link_text = generate_link_text(seed_num, square_id, planter_id)
+			output += generate_div("one", div_class, link_text)
 			return output
 		when 2
 			4.times do
 				if seed_space == 1 || seed_space == 4
 					div_class = "seed-#{seed_num}"
-					link_text = "#{link_to(seed_num, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
+					link_text = generate_link_text(seed_num, square_id, planter_id)
 					seed_num += 1
 				else
 					div_class = "none"
 					link_text = ""
 				end
-				output += "<div class = 'seeds four #{div_class}'><span>#{link_text}</span></div>"
+				output += generate_div("four", div_class, link_text)
 				seed_space += 1
 			end
 			return output
 		when 4
 			4.times do 
-				link_text = "#{link_to(seed_num, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
 				div_class = "seed-#{seed_num}"
-				output += "<div class = 'seeds four #{div_class}'><span>#{link_text}</span></div>"
+				link_text = generate_link_text(seed_num, square_id, planter_id)
+				output += generate_div("four", div_class, link_text)
 				seed_num += 1
 			end
 			return output
@@ -37,29 +39,42 @@ module PlantersHelper
 					link_text = ""
 				else
 					div_class = "seed-#{seed_num}"
-					link_text = "#{link_to(seed_num, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
+					link_text = generate_link_text(seed_num, square_id, planter_id)
 					seed_num += 1
 				end
-				output += "<div class = 'seeds nine #{div_class}'>#{link_text}</div>"
+				output += generate_div("nine", div_class, link_text)
 				seed_space += 1
 			end
 			return output
 		when 9
 			9.times do
 				div_class = "seed-#{seed_num}"
-				link_text = "#{link_to(seed_num, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
-				output += "<div class = 'seeds nine #{div_class}'>#{link_text}</div>"
+				link_text = generate_link_text(seed_num, square_id, planter_id)
+				output += generate_div("nine", div_class, link_text)
 				seed_num += 1
 			end
 			return output
 		when 16
 			16.times do
 				div_class = "seed-#{seed_num}"
-				link_text = "#{link_to(seed_num, new_seed_path({:square => square_id, :unit => seed_num, :planter => planter_id}))}"
-				output += "<div class = 'seeds sixteen #{div_class}'>#{link_text}</div>"
+				link_text = generate_link_text(seed_num, square_id, planter_id)
+				output += generate_div("sixteen", div_class, link_text)
 				seed_num += 1
 			end
 			return output
 		end
+	end
+
+	def generate_link_text(seed_num, square_id, planter_id)
+		if @square.seeds.where(square_space: seed_num).exists?
+			link_text = @square.seeds.where(square_space: seed_num).first.plant_date.strftime("%b %d '%y")
+		else
+			link_text = "#{link_to(seed_num, new_seed_path({:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}))}"
+		end
+		return link_text
+	end
+
+	def generate_div(num_seeds, div_class, link_text)
+		return "<div class = 'seeds #{num_seeds} #{div_class}'><span>#{link_text}</span></div>"
 	end
 end
