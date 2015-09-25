@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :planters
   resources :squares
   resources :seeds
+  get 'schedule' => 'static_pages#schedule'
+  get 'message_planter' => 'static_pages#message_planter'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
