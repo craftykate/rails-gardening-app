@@ -29,7 +29,12 @@ class SeedsController < ApplicationController
     @square = Square.find(params[:square_id])
     if @seed.save
       @planter = Planter.find(params[:planter_id])
-      flash[:success] = "#{@seed.square.plant.name} chosen for Square #{@square.unit} on #{@seed.plant_date.strftime("%b %d '%y")}"
+      if @seed.planted == true
+        planted = "in the ground"
+      else
+        planted = "not in the ground"
+      end
+      flash[:success] = "#{@seed.square.plant.name} chosen for Square #{@square.unit}, Seed #{@seed.square_space} on #{@seed.plant_date.strftime("%b %d '%y")} and #{planted}."
       redirect_to planter_path(@planter)
     else
       render :new
@@ -58,7 +63,12 @@ class SeedsController < ApplicationController
     @planter = Planter.find(params[:planter_id])
     @square = Square.find(params[:square_id])
     if @seed.update_attributes(seed_params)
-      flash[:success] = "#{@seed.square.plant.name} update for Square #{@square.unit} to #{@seed.plant_date.strftime("%b %d '%y")}"
+      if @seed.planted == true
+        planted = "in the ground"
+      else
+        planted = "not in the ground"
+      end
+      flash[:success] = "#{@seed.square.plant.name} in Square #{@square.unit}, Seed #{@seed.square_space} updated to #{@seed.plant_date.strftime("%b %d '%y")} and #{planted}."
       redirect_to planter_path(@planter)
     else
       render :edit
@@ -66,16 +76,19 @@ class SeedsController < ApplicationController
   end
 
   def destroy
-    Seed.find(params[:id]).destroy
-    flash[:success] = "Seed deleted"
-    session[:return_to] ||= request.referer
-    redirect_to session.delete(:return_to)
+    @seed = Seed.find(params[:id])
+    @plant = @seed.square.plant.name
+    @square = @seed.square.unit
+    @planter = @seed.square.planter.id
+    @seed.destroy
+    flash[:success] = "#{@plant} deleted from Square #{@square}, Seed #{@seed.square_space}."
+    redirect_to planter_path(@planter)
   end
 
   private
 
     def seed_params
-      params.require(:seed).permit(:square_id, :square_space, :plant_date)
+      params.require(:seed).permit(:square_id, :square_space, :plant_date, :planted)
     end
 # end private
 end

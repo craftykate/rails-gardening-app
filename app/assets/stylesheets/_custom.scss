@@ -146,6 +146,10 @@
 				}
 				a div.square {
 					border: 2px solid black;
+					&:hover {
+						background-color: $accent;
+						color: white;
+					}
 				}
 				$height: 30px;
 				div.square-name {
@@ -211,6 +215,12 @@
 						}
 						&.planted {
 							background-color: $main;
+						}
+						&.not-planted {
+							background-color: lighten($main, 30%);
+							&:hover {
+								color: $main;
+							}
 						}
 					}
 				}

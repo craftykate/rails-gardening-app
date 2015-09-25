@@ -15,6 +15,9 @@
     <%= f.label :plant_date, '*Pick a date:' %>
     <%= f.date_select(:plant_date, default: @seed.plant_date) %>
 
+    <%= f.label :planted, '*Planted?' %>
+    <%= f.select :planted, [['No', false], ['Yes', true]] %>
+
     <%= hidden_field_tag :planter_id, @planter.id %>
     <%= hidden_field_tag :square_id, @square.id %>
     <%= hidden_field_tag :square_space, @square_space %>
@@ -22,6 +25,8 @@
     <div class="submit">
       <%= f.submit 'Save' %>
     </div>
+    <br/>
+    <%= link_to "or pick the plant to delete record", @seed, method: :delete, data: { confirm: "You sure?" } %>
 
   </fieldset>
 <% end %>
