@@ -2,5 +2,5 @@ class Square < ActiveRecord::Base
 	belongs_to :planter
 	belongs_to :plant
 
-	has_many :seeds
+	has_many :seeds, dependent: :destroy
 end
