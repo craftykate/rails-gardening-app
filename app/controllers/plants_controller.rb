@@ -2,7 +2,7 @@ class PlantsController < ApplicationController
 
   def index
     @plants = Plant.all.order('name ASC')
-    @plants = @plants.sort_by { |p| [ p.plant_category.name, p.plant_generic_name.name ] }
+    @plants = @plants.sort_by { |p| [ p.plant_category.name, p.plant_generic_name.name, p.name ] }
   end
 
   def show

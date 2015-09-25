@@ -16,7 +16,7 @@
     <%= f.select :unit, options_for_select(@unit_options, @square.unit) %>
 
     <%= f.label :plant_id, '*Pick a plant:' %>
-    <%= f.select(:plant_id, Plant.all.order('plants.name ASC').map{|p| [ p.name, p.id ] }) %>
+    <%= f.select(:plant_id, @options) %>
 
     <%= hidden_field_tag :planter_id, @planter.id %>
 

@@ -21,7 +21,7 @@
 				<% end %>
 				<div class="square-name"><span>
 				<% if name != "" %>
-					<%= link_to("#{i} #{name}", @planter.squares.where(unit: i).first, method: :delete, data: { confirm: "Delete plant in square?" }) %>
+					<%= link_to(i, @planter.squares.where(unit: i).first, method: :delete, data: { confirm: "Delete plant in square?" }) %><%= link_to(name, plant_path(square.first.plant), :title => square.first.plant.name) %>
 				<% end %>
 				</span></div>
 				<% i += 1 %>
@@ -57,10 +57,13 @@
 <h2>Calendar</h2>
 
 <h2>Instructions</h2>
-<p class="instructions">Click a number to choose a plant for a square.<br/>
-Or click a plant to emoty the square.<br/>
-Click an empty square to schedule a planting.<br/>
-Or click a date to plant, pick or modify a planting.<br/>
+<p class="instructions"><strong>Step 1.</strong>Click a <span class="accent">pink number</span> in a square to choose a plant for a square.<br/>
+Click a <span class="main">plant's green number</span> to empty the square.<br/>
+Click a <span class="main">plant's green name</span> to see info on that plant.<br/>
+Hover over a <span class="main">plant's green name</span> to see it's full name.<br/>
+<strong>Step 2.</strong>Click an empty seed space to schedule a planting.<br/>
+<strong>Step 3.</strong> When planted, click a light green square to change status to "planted".<br/>
+Click a date to plant, pick or modify a planting.<br/>
 Light green is a scheduled planting, dark green is a planted seed.</p>
 
 

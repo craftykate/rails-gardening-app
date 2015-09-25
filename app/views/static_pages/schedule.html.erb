@@ -5,6 +5,8 @@
 				<thead>
 					<tr>
 						<th scope="col">Plant</th>
+						<th scope="col">Category</th>
+						<th scope="col">Type</th>
 						<th scope="col">Date</th>
 						<th scope="col">Planter</th>
 						<th scope="col">Square</th>
@@ -15,6 +17,8 @@
 					<% @seeds.each do |s| %>
 						<tr>
 							<td><%= s.square.plant.name %></td>
+							<td><%= s.square.plant.plant_category.name %></td>
+							<td><%= s.square.plant.plant_generic_name.name %></td>
 							<td><%= s.plant_date.strftime("%a, %b %d") %></td>
 							<% message = "You are planting #{s.square.plant.name} in Square #{s.square.unit}, Space #{s.square_space}" %>
 							<td><%= link_to s.square.planter.name, message_planter_path(:id => s.square.planter, :message => message) %></td>

@@ -10,6 +10,15 @@ class SquaresController < ApplicationController
 
   def new
     @square = Square.new
+    @plants = Plant.all
+    @plants = @plants.sort_by { |p| [ p.plant_generic_name.name, p.name ] }
+    @options = []
+    @plants.each do |p|
+      name = ""
+      name += "#{p.plant_generic_name.name}: "
+      name += p.name
+      @options << [name, p.id]
+    end
     @planter = Planter.find(params[:planter])
     @square.unit = params[:unit]
     unit_options
