@@ -1,7 +1,7 @@
 <% provide(:title, @planter.name) %>
 <%= link_to "← Back to all planters", planters_path %>
 <h2><%= @planter.name %></h2>
-
+<p>Hover over seeds to see pick date</p>
 <div class="planter-box">
 	<% length = @planter.length %>
 	<% width = @planter.width %>

@@ -73,7 +73,15 @@ module PlantersHelper
 				link_class = "not-planted"
 			end
 			date_text = @square.seeds.where(square_space: seed_num).first.plant_date.strftime("%b %d '%y")
-			link_text = "#{link_to(date_text, edit_seed_path(@square.seeds.where(square_space: seed_num).first, {:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}), :class=>link_class)}"
+			date_planted = @square.seeds.where(square_space: seed_num).first.plant_date
+			maturity = @square.plant.first_planting_maturity
+			if maturity != nil
+				date_to_pick = date_planted + (maturity.days)
+				date_to_pick = date_to_pick.strftime("%b %d '%y")
+			else
+				date_to_pick = ""
+			end
+			link_text = "#{link_to(date_text, edit_seed_path(@square.seeds.where(square_space: seed_num).first, {:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}), :class=>link_class, :title => date_to_pick)}"
 		else
 			link_text = "#{link_to("", new_seed_path({:square_id => square_id, :square_space => seed_num, :planter_id => planter_id}))}"
 		end
