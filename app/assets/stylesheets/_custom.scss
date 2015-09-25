@@ -162,7 +162,6 @@
 				}
 				div.seeds {
 					position: relative;
-					background-color: $main;
 					float: left;
 					border: 1px solid black;
 					text-align: center;
@@ -209,6 +208,9 @@
 						&:hover {
 							color: white;
 							background-color: $accent;
+						}
+						&.planted {
+							background-color: $main;
 						}
 					}
 				}
