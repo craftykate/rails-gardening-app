@@ -13,7 +13,12 @@
     <% end %>
 
     <%= f.label :plant_date, '*Pick a date:' %>
-    <%= f.date_select(:plant_date, default: @seed.plant_date) %>
+    <% if !@seed.plant_date.nil? %>
+      <% pick_date = @seed.plant_date %>
+    <% else %>
+      <% pick_date = Time.now %>
+    <% end %>
+    <%= f.date_select(:plant_date, default: pick_date) %>
 
     <%= f.label :planted, '*Planted?' %>
     <%= f.select :planted, [['No', false], ['Yes', true]] %>

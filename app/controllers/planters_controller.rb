@@ -1,7 +1,7 @@
 class PlantersController < ApplicationController
 
   def index
-    @planters = Planter.all
+    @planters = Planter.all.order('name ASC')
   end
 
   def show
